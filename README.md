@@ -1,1 +1,1 @@
-## End to End Matvhine Learning Project
+## End to End Machine Learning Project
