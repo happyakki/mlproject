@@ -17,7 +17,7 @@ from src.logger import logging
 from src.utils import save_object
 @dataclass
 class DataTransformationConfig:
-    preprocessor_obj_file_path = os.path.join('artifact','preprocessor.pkl')
+    preprocessor_obj_file_path = os.path.join('artifacts','preprocessor.pkl')
 
 class DataTransformation:
     def __init__(self):
@@ -46,7 +46,7 @@ class DataTransformation:
             )
 
 
-            Cat_pipeline = Pipeline(
+            cat_pipeline = Pipeline(
                 steps = [
                     ("imputer", SimpleImputer(strategy=  "most_frequent")),
                     ("one_hot_encoder", OneHotEncoder()),
@@ -59,7 +59,7 @@ class DataTransformation:
             preprocessor = ColumnTransformer(
                 [
                 ("num_pipeline", num_pipeline,numerical_columns),
-                ("cat_pipeline", Cat_pipeline,categorical_columns)
+                ("cat_pipeline", cat_pipeline,categorical_columns)
                 ]
             )
 
@@ -102,7 +102,7 @@ class DataTransformation:
                 file_path = self.data_transformation_config.preprocessor_obj_file_path,
                 obj = preprocessing_obj
             )
-
+            
             return (
                 train_arr, 
                 test_arr,
